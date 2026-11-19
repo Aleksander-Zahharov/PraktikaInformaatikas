@@ -29,7 +29,7 @@ jobs:
           mkdir _site
           cp -r Prezentatsioon/. _site/
           rm -rf _site/img/raw _site/*.mjs
-          cp _site/slides_ru.html _site/index.html
+          cp _site/slides_et.html _site/index.html
 
       - uses: actions/upload-pages-artifact@v3
         with:

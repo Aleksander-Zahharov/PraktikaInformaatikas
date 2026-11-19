@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Praktika informaatikas — Aleksander ZAHHAROV</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #181b22;
+    --text: #e8eaf0;
+    --muted: #9aa1b2;
+    --accent: #ff7a1a;
+    --accent2: #4fa3ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg); color: var(--text);
+    font-family: "Segoe UI", Roboto, Arial, sans-serif; overflow: hidden; }
+
+  .slide { position: absolute; inset: 0; display: none; flex-direction: column;
+    justify-content: center; padding: 6vh 7vw; gap: 3vh; }
+  .slide.active { display: flex; }
+
+  h1 { font-size: clamp(32px, 5vw, 64px); line-height: 1.1; }
+  h2 { font-size: clamp(26px, 3.4vw, 46px); color: var(--accent); }
+  h3 { font-size: clamp(18px, 1.8vw, 26px); margin-bottom: 1vh; }
+  p, li { font-size: clamp(16px, 1.6vw, 24px); line-height: 1.45; }
+  ul { list-style: none; display: grid; gap: 1.2vh; }
+  li::before { content: "— "; color: var(--accent); }
+  .muted { color: var(--muted); }
+  .big { font-size: clamp(40px, 6vw, 88px); font-weight: 700; color: var(--accent); }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; align-items: center; }
+  .cols3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2vw; }
+  .card { background: var(--panel); border-radius: 14px; padding: 2.5vh 1.6vw; }
+  .card .big { font-size: clamp(32px, 4vw, 60px); }
+
+  .timeline { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1vw; }
+  .step { background: var(--panel); border-top: 4px solid var(--accent); border-radius: 10px;
+    padding: 2vh 1vw; font-size: clamp(14px, 1.3vw, 20px); }
+  .step b { display: block; color: var(--accent); margin-bottom: .8vh; }
+
+  /* Pilt: kui faili pole, näidatakse punktiirraami koos allkirjaga */
+  .img { position: relative; width: 100%; aspect-ratio: 16 / 10; border-radius: 14px;
+    border: 2px dashed #3a4050; display: flex; align-items: center; justify-content: center;
+    text-align: center; color: var(--muted); font-size: clamp(13px, 1.1vw, 17px); padding: 1vw;
+    overflow: hidden; background: var(--panel); }
+  .img img, .img video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .img:has(img), .img:has(video) { border-color: transparent; }
+  .img video.crop-top {
+    width: 128%; height: 128%; left: -14%; right: auto; top: 0; bottom: auto;
+    object-fit: cover; object-position: top center;
+  }
+  .img video.crop-top-sm {
+    width: 112%; height: 112%; left: -6%; right: auto; top: 0; bottom: auto;
+    object-fit: cover; object-position: top center;
+  }
+
+  .flow { display: flex; align-items: stretch; gap: 1.2vw; flex-wrap: wrap; }
+  .flow .card { flex: 1; min-width: 180px; }
+  .arrow { font-size: 32px; color: var(--accent); align-self: center; }
+  .cols.stretch { align-items: stretch; }
+
+  .tag { display: inline-block; padding: .4vh .8vw; border-radius: 999px; background: #262b36;
+    font-size: clamp(13px, 1.1vw, 17px); margin: .3vh .3vw 0 0; }
+
+  #counter { position: fixed; right: 2vw; bottom: 2vh; color: var(--muted); font-size: 14px; }
+  #hint { position: fixed; left: 2vw; bottom: 2vh; color: #555b6b; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<!-- 1. Tiitelslaid -->
+<section class="slide active">
+  <p class="muted">Praktika informaatikas · MTAT.03.206 · 12 EAP</p>
+  <h1>Kaks veebilehte: disain, arendus, juurutamine, SEO, analüütika</h1>
+  <p>Aleksander ZAHHAROV</p>
+  <p class="muted">Juhendajad: Eduard VALD (GoGPS Service OÜ) · Daniil TŠORNÕI (ADViral Agency)</p>
+</section>
+
+<!-- 2. Praktikakohad -->
+<section class="slide">
+  <h2>Kus ma praktikal olin</h2>
+  <div class="cols">
+    <div class="card">
+      <h3>GoGPS · <span class="muted">gogps.ee</span></h3>
+      <p>Sõidukite ja tehnika GPS-jälgimisega tegelev ettevõte.</p>
+      <div class="img" style="margin-top:2vh">
+        <img src="img/gogps_home.png" alt="" onerror="this.remove()">
+        gogps.ee avaleht<br>(img/gogps_home.png)
+      </div>
+    </div>
+    <div class="card">
+      <h3>ADViral Agency · <span class="muted">adviral.agency</span></h3>
+      <p>Turundusagentuur: videod, reklaam, sotsiaalmeedia.</p>
+      <div class="img" style="margin-top:2vh">
+        <img src="img/adviral_home.png" alt="" onerror="this.remove()">
+        adviral.agency avaleht<br>(img/adviral_home.png)
+      </div>
+    </div>
+  </div>
+  <p><b>Minu roll:</b> tegin kõik ise — disaini, frontendi, backendi, SEO, juurutamise ja analüütika.</p>
+</section>
+
+<!-- 3. Numbrid -->
+<section class="slide">
+  <h2>Praktika numbrites</h2>
+  <div class="cols3">
+    <div class="card"><div class="big">330 h</div><p>kokku<br><span class="muted">16.02 – 15.06.2026</span></p></div>
+    <div class="card"><div class="big">220 h</div><p>GoGPS<br><span class="muted">React SPA + oma backend</span></p></div>
+    <div class="card"><div class="big">110 h</div><p>Adviral<br><span class="muted">puhas HTML / CSS / JS</span></p></div>
+  </div>
+  <p class="muted">Projektid käisid paralleelselt: paar päeva üks leht, siis teine.</p>
+</section>
+
+<!-- 4. Töö käik -->
+<section class="slide">
+  <h2>Kuidas töö käis</h2>
+  <div class="timeline">
+    <div class="step"><b>1. Idee</b>Kohtumised tellijatega: mida lehel vaja on</div>
+    <div class="step"><b>2. Figma</b>Makett ja disaini kooskõlastamine</div>
+    <div class="step"><b>3. Kood</b>Maketi viimine koodi, kõik ekraanisuurused</div>
+    <div class="step"><b>4. Vormid ja admin</b>Päringud, CMS, varukoopiad (GoGPS)</div>
+    <div class="step"><b>5. Käivitus</b>Juurutamine, vigade otsimine ja parandamine</div>
+    <div class="step"><b>6. Google</b>SEO, Analytics, Search Console</div>
+  </div>
+  <p class="muted">Selline oli plaan. Tegelikult käis palju ringiratast: pärast käivitust jälle vead, jälle parandused.</p>
+</section>
+
+<!-- 5. GoGPS -->
+<section class="slide">
+  <h2>GoGPS: mis valmis sai</h2>
+  <div class="cols">
+    <ul>
+      <li>Mitmekeelne leht Reactis (3 keelt)</li>
+      <li>Oma adminpaneel: tellija kirjutab blogipostitusi ise</li>
+      <li>Kerge Node.js-i backend ilma andmebaasita + automaatsed varukoopiad</li>
+      <li>Vormide kaitse spämmi (reCAPTCHA) ja topeltsaatmise eest</li>
+      <li>Nginx-server, juurutamine FTP kaudu</li>
+    </ul>
+    <div class="img">
+      <video class="crop-top" src="img/GoGPS_QuickLook.mp4?v=5" muted autoplay loop playsinline></video>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Adviral -->
+<section class="slide">
+  <h2>Adviral: mis valmis sai</h2>
+  <div class="cols">
+    <ul>
+      <li>Üheleheline sait ilma raamistiketa — et laadiks kiiresti</li>
+      <li>Oma videopleier portfoolio jaoks, mugav ka telefonis</li>
+      <li>Hele ja tume teema, 3 keelt</li>
+      <li>Päringuvorm Formspree kaudu</li>
+      <li>Tihendatud pildid (WebP) ja kerged video eelvaated</li>
+    </ul>
+    <div class="img">
+      <video class="crop-top-sm" src="img/ADViralAgency_QuickLook.mp4" muted autoplay loop playsinline></video>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Suurim väljakutse -->
+<section class="slide">
+  <h2>Suurim väljakutse: SEO ja hüpikaknad</h2>
+  <div class="cols">
+    <div>
+      <p>Advirali teenuste kirjeldused on peidetud <b>hüpikakendesse</b>. Inimesele on see ilus ja mugav.</p>
+      <p style="margin-top:2vh">Kuid Google näeb lehte <b>enne klõpsu</b> — ega näe hüpikakende sisu.</p>
+      <p style="margin-top:2vh" class="muted">Küsimus: jätta hüpikaknad alles või teha tavalised eraldi lehed?</p>
+    </div>
+    <div class="img">
+      <img src="img/popup_vs_google.png" alt="" onerror="this.remove()">
+      Teenuste hüpikaknad lehtedel<br>(img/popup_vs_google.png)
+    </div>
+  </div>
+</section>
+
+<!-- 8. Lahendus -->
+<section class="slide">
+  <h2>Mida ma tegin</h2>
+  <div class="flow">
+    <div class="card"><h3>1. Oma aadress</h3><p>Igal teenusel on oma link — selle kaudu avaneb hüpikaken ise</p></div>
+    <div class="arrow">→</div>
+    <div class="card"><h3>2. Hetktõmmis Google'ile</h3><p>Robotbrauser (Puppeteer) salvestab valmis lehed ette</p></div>
+    <div class="arrow">→</div>
+    <div class="card"><h3>3. Tekst avalehel</h3><p>Peidetud plokk kõigi hüpikakende tekstiga</p></div>
+  </div>
+  <div class="cols3" style="margin-top:2vh">
+    <div class="card"><h3>Kahtlus</h3><p>Kas Google ei pea selliseid lahendusi trikiks? Võib-olla oleks tavalised lehed olnud lihtsamad — aga siis oleks sait kaotanud oma välimuse.</p></div>
+    <div class="card"><h3>Tulemus</h3><p>Google loeb teenuse teksti nagu tavalist pealkirja. Viimase 4 nädala jooksul tuli üle poole külastustest otsingust.</p></div>
+    <div class="img">
+      <img src="img/google_view.png" alt="" onerror="this.remove()">
+      Teenuse leht Google'i silmade läbi<br>(img/google_view.png)
+    </div>
+  </div>
+</section>
+
+<!-- 9. AI-analüütika -->
+<section class="slide">
+  <h2>Millega olen kõige rohkem rahul: AI-analüütika</h2>
+  <div class="cols">
+    <div>
+      <p>Ühendasin Google Analyticsi ja Search Console'i otse koodiredaktoriga (MCP kaudu).</p>
+      <p style="margin-top:2vh">Nüüd saab lihtsalt küsida:<br><i>„Kust inimesed lehele tulevad?“</i> — ja kohe saada vastuse ning valmis aruande.</p>
+      <p style="margin-top:2vh" class="muted">Paremal — adviral.agency päris andmed 4 nädala kohta.</p>
+    </div>
+    <div class="img">
+      <img src="img/ai_analytics.png" alt="" onerror="this.remove()">
+      AI küsimus ja Analyticsi vastus<br>(img/ai_analytics.png)
+    </div>
+  </div>
+</section>
+
+<!-- 10. Hinnangud -->
+<section class="slide">
+  <h2>Kuidas ma praktikat hindan</h2>
+  <div class="cols3">
+    <div class="card"><h3>Töökeskkond</h3><p>Cursor, Node.js, React — töö oli kiire ja mugav</p></div>
+    <div class="card"><h3>Meeskond</h3><p>Töötasin peamiselt üksi, tellijad aitasid, kui jäin hätta</p></div>
+    <div class="card"><h3>Ülesanded</h3><p>Lihtsast küljendusest Nginxi, SEO ja analüütikani</p></div>
+    <div class="card"><h3>Protsess</h3><p>Nädalased sprindid, kaks projekti vaheldumisi</p></div>
+    <div class="card"><h3>Juhendamine</h3><p>Kiire tagasiside disaini, adminpaneeli, juurutamise ja turvalisuse kohta</p></div>
+    <div class="card"><h3>Kokkuvõte</h3><p>Mõlemad lehed töötavad ja toovad ärile kasu</p></div>
+  </div>
+</section>
+
+<!-- 11. Mida õppisin -->
+<section class="slide">
+  <h2>Mida ma õppisin</h2>
+  <div class="cols">
+    <ul>
+      <li>Viia projekt ideest käivituse ja hoolduseni</li>
+      <li>Hinnata, kui palju aega ülesanne võtab</li>
+      <li>SEO lehtedele, kus sisu joonistab JavaScript</li>
+      <li>Google Analytics, Search Console, schema.org, llms.txt</li>
+      <li>Kirjutada dokumentatsiooni, mis on teistele arusaadav</li>
+    </ul>
+    <div class="card">
+      <h3>Oskan teisi õpetada</h3>
+      <p>SEO seadistamist, andmebaasita kerge CMS-i tegemist ja analüütika ühendamist AI-ga.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 12. Hästi / teisiti -->
+<section class="slide">
+  <h2>Mis õnnestus ja mida teeksin teisiti</h2>
+  <div class="cols stretch">
+    <div class="card"><h3>Õnnestus</h3><ul>
+      <li>AI-analüütika MCP kaudu</li>
+      <li>SEO ilma disaini muutmata</li>
+      <li>Mõlemad lehed on töös ja toimivad</li>
+    </ul></div>
+    <div class="card"><h3>Teeksin teisiti</h3><ul>
+      <li>Vähem käsitsi ekraanide kontrolli — Device Toolbar ei näita kõike</li>
+      <li>Automaattestid, et püüda vigu pärast muudatusi adminpaneelis</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- 13. Lõpp -->
+<section class="slide">
+  <h1>Aitäh!</h1>
+  <p class="muted">gogps.ee · adviral.agency</p>
+  <p class="big" style="font-size:clamp(28px,3vw,44px)">Küsimused?</p>
+</section>
+
+<div id="counter"></div>
+<div id="hint">← → sirvi · F — täisekraan</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  let i = 0;
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => {
+      const on = k === i;
+      s.classList.toggle('active', on);
+      s.querySelectorAll('video').forEach(v => {
+        if (on) { v.currentTime = 0; v.play().catch(() => {}); }
+        else v.pause();
+      });
+    });
+    counter.textContent = (i + 1) + ' / ' + slides.length;
+    history.replaceState(null, '', '#' + (i + 1));
+  }
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', 'PageDown', ' '].includes(e.key)) show(i + 1);
+    if (['ArrowLeft', 'PageUp'].includes(e.key)) show(i - 1);
+    if (e.key === 'f' || e.key === 'F') {
+      document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+    }
+  });
+  document.addEventListener('click', e => { if (!e.target.closest('a')) show(i + (e.clientX > innerWidth / 3 ? 1 : -1)); });
+  show((parseInt(location.hash.slice(1)) || 1) - 1);
+</script>
+</body>
+</html>
