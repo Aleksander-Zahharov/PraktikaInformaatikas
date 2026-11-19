@@ -1,5 +1,7 @@
-﻿# Praktika informaatikas — esitlus
+# Praktika informaatikas (MTAT.03.206)
 
-HTML-slaidid (vene keeles). Ava: [slides](https://aleksander-zahharov.github.io/praktika-prezentatsioon/)
+Aleksander ZAHHAROV · GoGPS Service OÜ ja ADViral Agency · 16.02–15.06.2026
 
-Klaviatuur: ← → / Space · F — täisekraan
+- Esitlus: [aleksander-zahharov.github.io/praktika-prezentatsioon](https://aleksander-zahharov.github.io/praktika-prezentatsioon/) (`Prezentatsioon/slides_ru.html`)
+- Aruanne: `Aleksander_ZAHHAROV_Praktika_Aruanne.md` (ru: `_ru.md`)
+- Praktikakava: `Aleksander_ZAHHAROV_Praktika_Plaan.md` (ru: `_ru.md`)
