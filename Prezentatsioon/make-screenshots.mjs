@@ -149,17 +149,17 @@ try {
   // Ответ ИИ по реальному отчёту Google Analytics (adviral.agency, последние 28 дней, запрос через MCP)
   const page = await browser.newPage();
   await page.setViewport({ width: 1600, height: 1000 });
-  const rows = [['Поиск Google', 9], ['Прямые заходы', 3], ['ИИ-ассистенты', 2], ['Соцсети', 2], ['Другое', 1]];
+  const rows = [["Google'i otsing", 9], ['Otsekülastused', 3], ['AI-assistendid', 2], ['Sotsiaalmeedia', 2], ['Muu', 1]];
   await page.setContent(`<html><body style="margin:0;background:#181b22;width:1600px;height:1000px;display:flex;
     flex-direction:column;justify-content:center;gap:36px;padding:60px 90px;box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif;color:#e8eaf0">
-    <div style="align-self:flex-end;max-width:70%;background:#2b3245;border-radius:22px 22px 4px 22px;padding:26px 32px;font-size:34px">
-      Откуда приходят люди на adviral.agency за последние 4 недели?</div>
+    <div style="align-self:flex-end;max-width:78%;background:#2b3245;border-radius:22px 22px 4px 22px;padding:26px 32px;font-size:34px">
+      Kust tulevad inimesed adviral.agency lehele viimase 4 nädala jooksul?</div>
     <div style="max-width:88%;background:#0f1115;border:1px solid #2a2f3a;border-radius:22px 22px 22px 4px;padding:30px 36px;font-size:30px">
-      <div style="color:#9aa1b2;font-size:22px;margin-bottom:14px">ИИ · Google Analytics MCP · run_report</div>
-      <div style="margin-bottom:22px"><b>17 визитов.</b> Больше половины — из поиска Google:</div>
+      <div style="color:#9aa1b2;font-size:22px;margin-bottom:14px">AI · Google Analytics MCP · run_report</div>
+      <div style="margin-bottom:22px"><b>17 külastust.</b> Rohkem kui pool — Google'i otsingust:</div>
       ${rows.map(([n, v]) => `<div style="display:flex;align-items:center;gap:20px;margin:10px 0">
-        <span style="width:260px">${n}</span>
-        <span style="height:30px;width:${v * 70}px;background:${n === 'Поиск Google' ? '#ff7a1a' : '#4fa3ff'};border-radius:6px"></span>
+        <span style="width:280px">${n}</span>
+        <span style="height:30px;width:${v * 70}px;background:${n === "Google'i otsing" ? '#ff7a1a' : '#4fa3ff'};border-radius:6px"></span>
         <b>${v}</b></div>`).join('')}
     </div></body></html>`);
   await page.screenshot({ path: path.join(outDir, 'ai_analytics.png') });
